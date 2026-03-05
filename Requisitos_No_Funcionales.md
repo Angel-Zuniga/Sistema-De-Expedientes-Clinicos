@@ -1,13 +1,14 @@
 ### RNF - 01 Seguridad del mecanismo de autenticación por código
-**Requisito:** Autenticación mediante código de un solo uso (OTP).
+**Requisito:** Seguridad del mecanismo de autenticación mediante código OTP.
 
 **Descripción:**
-El sistema deberá diseñarse para utilizar códigos de acceso de un solo uso enviados al correo electrónico registrado del terapeuta o administrador como mecanismo de autenticación temporal.
+El sistema deberá implementar el mecanismo de autenticación mediante código de un solo uso (OTP) definido en el RF-01, garantizando que dichos códigos sean generados, almacenados y validados de forma segura.
 
 **Restricciones:**
-- El código deberá tener una vigencia limitada (5–10 minutos).
-- El código solo podrá utilizarse una vez.
-- El diseño no deberá permitir reutilización del código.
+- El código deberá tener una vigencia limitada de 5 a 10 minutos desde su generación.
+- Cada código OTP podrá utilizarse una sola vez para completar la autenticación.
+- El código OTP no deberá almacenarse en texto plano en la base de datos.
+- La generación del código deberá utilizar un mecanismo de generación pseudoaleatoria adecuado para fines de seguridad.
 
 **Criterios de aceptación:**
 - El sistema genera códigos OTP con longitud de 6 caracteres.
@@ -16,20 +17,21 @@ El sistema deberá diseñarse para utilizar códigos de acceso de un solo uso en
 
 ---
 
-### RNF - 02 Protección contra accesos no autorizados
-**Requisito:** Control de intentos fallidos.
+### RNF - 02 Protección contra intentos de autenticación no autorizados
+**Requisito:** Limitación de intentos fallidos de autenticación.
 
 **Descripción:**
-El sistema deberá implementar un mecanismo de limitación de intentos fallidos al ingresar el código enviado por correo, para prevenir ataques de fuerza bruta.
+El sistema deberá implementar mecanismos de protección contra intentos repetidos de validación del código OTP definido en el RF-01, con el objetivo de reducir el riesgo de ataques de fuerza bruta durante el proceso de autenticación.
 
 **Restricciones:**
-- No se permitirán intentos ilimitados de validación del código.
-- El diseño debe implementar un bloqueo temporal tras cierto número de intentos fallidos.
+- El sistema deberá limitar el número de intentos fallidos de validación de un código OTP.
+- El sistema deberá aplicar un bloqueo temporal del proceso de autenticación tras superar el límite de intentos fallidos.
 
 **Criterios de aceptación:**
-- El sistema permite hasta un maximo de 5 intentos fallidos por codigo.
-- El código es marcado como bloqueado al superar el número máximo de intentos.
-- El sistema aplica un bloqueo temporal mínimo de 10 minutos tras superar el límite de intentos.
+- El sistema permite un máximo de 5 intentos fallidos de validación por cada código OTP generado.
+- Al superar el límite de intentos fallidos, el código OTP se marca como inválido o bloqueado.
+- El sistema impide nuevos intentos de autenticación durante un período mínimo de 10 minutos después de superar el límite.
+- Una vez finalizado el período de bloqueo, el usuario puede solicitar un nuevo código OTP para iniciar nuevamente el proceso de autenticación.
 
 ---
 
@@ -52,42 +54,41 @@ El sistema deberá diseñarse para que la "eliminación" de pacientes no impliqu
 
 ---
 
-### RNF - 04 Vistas diferenciadas según rol de usuario
+### RNF - 04 Aplicación obligatoria de políticas de autorización
 
-**Requisito:** Vistas diferenciadas según rol de usuario
+**Requisito:** Aplicación de controles de autorización en el backend.
 
 **Descripción:**
-El sistema deberá diseñarse para presentar y habilitar únicamente las vistas y funcionalidades permitidas según el rol del usuario autenticado (Terapeuta / Administrador), de forma que las acciones no autorizadas no puedan ejecutarse ni por navegación normal ni por acceso directo a rutas.
+El sistema deberá implementar controles de autorización en el backend para garantizar que únicamente los usuarios con permisos adecuados puedan ejecutar cada operación disponible en el sistema, independientemente de las restricciones de la interfaz de usuario.
 
 **Restricciones:**
-- La autorización es obligatoria en backend para cada endpoint.
-- Las vistas del cliente (front) deben alinearse con los permisos reales, pero no sustituyen la validación del servidor.
-- Accesos directos a rutas/recursos no permitidos deben ser bloqueados por políticas de autorización.
+- Todas las operaciones del sistema deberán validar los permisos del usuario autenticado en el backend.
+- Las restricciones de acceso no deberán depender únicamente de la interfaz de usuario.
+- El acceso directo a rutas o endpoints no autorizados deberá ser bloqueado por el servidor.
 
 **Criterios de aceptación:**
 
-- Un terapeuta no puede acceder a vistas administrativas, aun ingresando la URL directamente (backend rechaza).
-- Un administrador sí puede acceder a vistas de gestión (backend permite).
-- Toda solicitud a endpoints administrativos por un terapeuta es rechazada por el backend.
-
+- El backend valida el rol o permisos del usuario antes de ejecutar cualquier operación protegida.
+- Las solicitudes a endpoints no autorizados son rechazadas por el servidor.
+- Las restricciones de acceso se aplican incluso si el usuario intenta acceder directamente a una ruta mediante URL.
 ---
 
-### RNF - 05 Restricción de acceso a pacientes por asignación 
+### RNF - 05 Aislamiento de datos clínicos por asignación
 
-**Requisito:** Restricción de acceso a pacientes por asignación
+**Requisito:** Aislamiento de información clínica entre terapeutas.
 
 **Descripción:**
-El sistema deberá diseñarse para garantizar que un terapeuta únicamente pueda consultar y operar sobre expedientes/pacientes que le hayan sido asignados explícitamente, evitando exposición o manipulación de información de otros pacientes.
+El sistema deberá garantizar el aislamiento de los expedientes clínicos mediante controles de acceso basados en la asignación de pacientes a terapeutas, evitando que usuarios accedan a información clínica de pacientes que no forman parte de su ámbito de atención.
 
 **Restricciones:**
-- La validación de asignación se realiza en backend en cada operación sensible (listar, ver detalle, editar, etc.).
-- No se permite inferencia por IDs: cualquier acceso a un paciente no asignado debe ser rechazado incluso si el ID existe.
-- La capa de acceso a datos debe filtrar por asignación.
-
+- Las consultas a datos clínicos deberán aplicar filtrado por asignación en la capa de acceso a datos..
+- El sistema no deberá permitir el acceso a expedientes clínicos de pacientes no asignados al terapeuta.
+- La validación de asignación deberá realizarse en el backend para cada operación que implique acceso a información clínica.
+- 
 **Criterios de aceptación:**
-- Un terapeuta solo puede ver pacientes asignados al listar o buscar (backend filtra resultados).
-- Cualquier intento de acceso directo a un paciente no asignado es rechazado por el backend.
-- La validación se aplica en endpoints de lectura y modificación.
+- Las consultas realizadas por terapeutas retornan únicamente pacientes que les han sido asignados.
+- Las solicitudes de acceso a expedientes de pacientes no asignados son rechazadas por el servidor.
+- Las reglas de aislamiento de datos se aplican tanto en operaciones de lectura como de modificación.
 
 ---
 
