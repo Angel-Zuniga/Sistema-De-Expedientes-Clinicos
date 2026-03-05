@@ -14,6 +14,8 @@ El sistema deberá diseñarse para utilizar códigos de acceso de un solo uso en
 - El sistema invalida automáticamente cualquier código marcado como utilizado con anterioridad.
 - El código no se almacena en texto plano, sino mediante una función hash criptográfica.
 
+---
+
 ### RNF - 02 Protección contra accesos no autorizados
 **Requisito:** Control de intentos fallidos.
 
@@ -28,6 +30,8 @@ El sistema deberá implementar un mecanismo de limitación de intentos fallidos 
 - El sistema permite hasta un maximo de 5 intentos fallidos por codigo.
 - El código es marcado como bloqueado al superar el número máximo de intentos.
 - El sistema aplica un bloqueo temporal mínimo de 10 minutos tras superar el límite de intentos.
+
+---
 
 ### RNF - 03 Conservación de expedientes clínicos
 **Requisito:** Preservación en lugar de eliminación física de pacientes
@@ -45,6 +49,8 @@ El sistema deberá diseñarse para que la "eliminación" de pacientes no impliqu
 **Criterios de aceptación:**
 - El sistema muestra un atributo de estado para el expediente de cada paciente.
 - El sistema impide la modificación de la información en el expediente del paciente una vez este ha sido archivado.
+
+---
 
 ### RNF - 04 Vistas diferenciadas según rol de usuario
 
@@ -64,6 +70,8 @@ El sistema deberá diseñarse para presentar y habilitar únicamente las vistas 
 - Un administrador sí puede acceder a vistas de gestión (backend permite).
 - Toda solicitud a endpoints administrativos por un terapeuta es rechazada por el backend.
 
+---
+
 ### RNF - 05 Restricción de acceso a pacientes por asignación 
 
 **Requisito:** Restricción de acceso a pacientes por asignación
@@ -80,6 +88,8 @@ El sistema deberá diseñarse para garantizar que un terapeuta únicamente pueda
 - Un terapeuta solo puede ver pacientes asignados al listar o buscar (backend filtra resultados).
 - Cualquier intento de acceso directo a un paciente no asignado es rechazado por el backend.
 - La validación se aplica en endpoints de lectura y modificación.
+
+---
 
 ### RNF - 06 Menú dinámico basado en el rol del usuario
 
