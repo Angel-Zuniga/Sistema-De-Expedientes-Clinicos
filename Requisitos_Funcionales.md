@@ -16,57 +16,44 @@ El sistema deberá permitir que terapeutas y administradores inicien sesión med
 
 ---
 
-### RF - 02 Registro de pacientes
-
-**Requisito:** Registro de pacientes.
-
-**Descripción:**
-El sistema deberá permitir registrar nuevos pacientes con la información necesaria para la creación de su expediente clínico.
-
-**Restricciones:**
-- Solo terapeutas o administradores pueden registrar pacientes.
-- Los datos obligatorios del paciente deben ser proporcionados antes de guardar el registro.
-
-**Criterios de aceptación:**
-- El sistema permite registrar un paciente con datos válidos.
-- El sistema guarda la información del paciente en la base de datos.
-- El paciente aparece en los listados correspondientes.
-
----
-
-### RF - 03 Consulta de pacientes
+### RF - 02 Consulta de pacientes
 
 **Requisito:** Consulta de pacientes registrados.
 
 **Descripción:**
-El sistema deberá permitir consultar la información general de los pacientes registrados en el sistema.
+El sistema deberá permitir a los usuarios consultar los pacientes registrados en el sistema mediante un listado y visualizar la información general de cada paciente.
 
 **Restricciones:**
 - La información mostrada dependerá del rol del usuario.
+- Los terapeutas únicamente podrán consultar pacientes que les hayan sido asignados.
 
 **Criterios de aceptación:**
-- El sistema muestra la información del paciente solicitado.
-- Los datos mostrados corresponden al paciente seleccionado.
+- El sistema muestra un listado de pacientes disponibles para el usuario autenticado.
+- El usuario puede seleccionar un paciente del listado.
+- El sistema muestra la información general y expediente del paciente seleccionado.
 
 ---
 
-### RF - 04 Edición de expediente clínico
+### RF - 03 Edición de expediente clínico
 
 **Requisito:** Edición de expediente clínico.
 
 **Descripción:**
-El sistema deberá permitir actualizar la información del expediente clínico de un paciente.
+El sistema deberá permitir actualizar la información clínica del expediente de un paciente registrado en el sistema.
 
 **Restricciones:**
-- Solo usuarios autorizados pueden modificar un expediente.
+- Solo usuarios autorizados pueden modificar un expediente clínico.
+- No se permitirá modificar expedientes archivados.
 
 **Criterios de aceptación:**
-- El sistema permite modificar los datos del expediente clínico.
-- Los cambios se guardan correctamente en la base de datos.
+- El usuario autorizado puede acceder a la opción de edición del expediente clínico.
+- El sistema permite modificar la información clínica del expediente.
+- Los cambios realizados se almacenan correctamente en la base de datos.
+- Al consultar nuevamente el expediente, el sistema muestra la información actualizada.
 
 ---
 
-### RF - 05 Registro de sesiones psicológicas
+### RF - 04 Registro de sesiones psicológicas
 
 **Requisito:** Registro de sesiones psicológicas.
 
@@ -82,23 +69,25 @@ El sistema deberá permitir registrar sesiones psicológicas asociadas a un paci
 
 ---
 
-### RF - 06 Visualización operativa de expedientes
+### RF - 05 Visualización operativa de expedientes
 
 **Requisito:** Visualización operativa para administradores.
 
 **Descripción:**
-El sistema deberá permitir que los administradores consulten información operativa de los expedientes clínicos.
+El sistema deberá permitir que los administradores consulten información operativa de los expedientes clínicos, como estado del expediente, terapeuta asignado y registros de sesiones, sin mostrar información clínica sensible.
 
 **Restricciones:**
-- La información mostrada al administrador excluye contenido clínico.
+- Solo usuarios con rol de administrador pueden acceder a esta funcionalidad.
+- La información mostrada no debe incluir contenido clínico, como notas terapéuticas u observaciones psicológicas.
 
 **Criterios de aceptación:**
-- El administrador puede visualizar datos operativos del expediente.
-- El sistema no muestra información clínica sensible.
+- El administrador puede consultar expedientes clínicos desde el sistema.
+- El sistema muestra información operativa del expediente, como estado y terapeuta asignado.
+- El sistema oculta o excluye información clínica sensible del expediente.
 
 ---
 
-### RF - 07 Asignación de pacientes a terapeutas
+### RF - 06 Asignación de pacientes a terapeutas
 
 **Requisito:** Asignación de pacientes.
 
@@ -114,7 +103,7 @@ El sistema deberá permitir asignar pacientes a terapeutas responsables de su at
 
 ---
 
-### RF - 08 Navegación del sistema mediante menú
+### RF - 07 Navegación del sistema mediante menú
 
 **Requisito:** Navegación mediante menú del sistema.
 
