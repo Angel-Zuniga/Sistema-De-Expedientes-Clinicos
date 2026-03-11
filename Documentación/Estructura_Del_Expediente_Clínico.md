@@ -19,14 +19,11 @@
 -   **Estado Mental:** En casos de urgencias o internamiento psiquiátrico, la nota debe contener un resumen de la exploración del **estado mental** del paciente.
 -   **Exploración Específica:** En lugar de una exploración física general, se registra la información técnica propia de la psicología (conducta, procesos cognitivos, etc.).
 
-4. Registro de Sesiones (Notas de Evolución)
-
-Cada sesión debe documentar el progreso terapéutico con los siguientes datos mínimos:
-
+4. ### Registro de Sesiones (Notas de Evolución)
 -   **Evolución del cuadro clínico:** Descripción de los cambios en el estado del paciente y, en su caso, actualizaciones sobre el **abuso o dependencia de sustancias**.
 -   **Actualización diagnóstica:** Registro de los problemas clínicos detectados o modificados durante el proceso.
 -   **Sugerencias y Plan:** Indicaciones psicoterapéuticas, metas de la sesión y plan de manejo.
 -   **Autoría:** Cada nota debe incluir fecha, hora y el nombre completo con la **firma (autógrafa o electrónica)** del psicólogo para asegurar la integridad y trazabilidad del registro.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTkwMjkzMDM1MSwyODM5NzQ4OV19
+eyJoaXN0b3J5IjpbLTExMjMyNDMyMDAsMjgzOTc0ODldfQ==
 -->
