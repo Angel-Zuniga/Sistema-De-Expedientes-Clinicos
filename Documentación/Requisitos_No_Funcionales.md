@@ -1,41 +1,4 @@
-### RF - 01 Autenticación mediante código de un solo uso
-
-**Requisito:** Inicio de sesión mediante código OTP.
-
-**Descripción:**
-El sistema deberá permitir que terapeutas y administradores inicien sesión mediante un código de un solo uso enviado al correo electrónico registrado en el sistema.
-
-**Restricciones:**
-- Solo usuarios previamente registrados pueden solicitar un código de acceso.
-- El código debe enviarse al correo asociado al usuario.
-
-**Criterios de aceptación:**
-- El usuario puede solicitar un código de acceso desde la interfaz de inicio de sesión.
-- El sistema envía un código al correo electrónico registrado.
-- El usuario puede ingresar el código recibido para autenticarse en el sistema.
-
----
-
-### RNF - 02 Seguridad del mecanismo de autenticación por código
-**Requisito:** Seguridad del mecanismo de autenticación mediante código OTP.
-
-**Descripción:**
-El sistema deberá implementar el mecanismo de autenticación mediante código de un solo uso (OTP) definido en el RF-01, garantizando que dichos códigos sean generados, almacenados y validados de forma segura.
-
-**Restricciones:**
-- El código deberá tener una vigencia limitada de 5 a 10 minutos desde su generación.
-- Cada código OTP podrá utilizarse una sola vez para completar la autenticación.
-- El código OTP no deberá almacenarse en texto plano en la base de datos.
-- La generación del código deberá utilizar un mecanismo de generación pseudoaleatoria adecuado para fines de seguridad.
-
-**Criterios de aceptación:**
-- El sistema genera códigos OTP con longitud de 6 caracteres.
-- El sistema invalida automáticamente cualquier código marcado como utilizado con anterioridad.
-- El código no se almacena en texto plano, sino mediante una función hash criptográfica.
-
----
-
-### RNF - 03 Protección contra intentos de autenticación no autorizados
+### RNF - 01 Protección contra intentos de autenticación no autorizados
 **Requisito:** Limitación de intentos fallidos de autenticación.
 
 **Descripción:**
@@ -53,7 +16,7 @@ El sistema deberá implementar mecanismos de protección contra intentos repetid
 
 ---
 
-### RNF - 04 Conservación de expedientes clínicos
+### RNF - 02 Conservación de expedientes clínicos
 **Requisito:** Preservación en lugar de eliminación física de pacientes
 
 **Descripción:**
@@ -126,3 +89,6 @@ El sistema deberá diseñarse para que la interfaz muestre opciones de navegaci�
 - Terapeutas no visualizan opciones administrativas en el menú.
 - Administradores visualizan el panel/opciones de gestión correspondientes.
 - Si un usuario intenta ejecutar una acción no permitida fuera del menú, el backend la rechaza.
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbNzEzNjc2NzE3XX0=
+-->
