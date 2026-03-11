@@ -9,10 +9,7 @@
 -   **Condiciones de vida:** Nivel socioeconómico, tipo de vivienda y si presenta alguna **discapacidad** (para evaluar barreras de acceso o necesidades especiales).
 
 2. ### Información Administrativa y de Privacidad
-
-Debido a la sensibilidad de la información tratada, esta sección es crítica:
-
--   **Aviso de Privacidad (Datos Sensibles):** El sistema debe informar que se tratarán **datos personales sensibles**, definidos como aquellos que afectan la esfera más íntima (estado de salud presente o futuro, creencias morales o filosóficas, vida afectiva y familiar).
+-   **Aviso de Privacidad (Datos Sensibles):** El sistema debe informar que se tratarán **datos personales sensibles** (aquellos que afectan el estado de salud presente o futuro, creencias morales o filosóficas, vida afectiva y familiar)
 -   **Consentimiento Informado:** Es obligatorio para **investigación clínica** en seres humanos o procedimientos que el psicólogo considere de alto riesgo.
 -   **Acuerdos de confidencialidad:** Se debe garantizar que todo el personal que intervenga en el tratamiento guarde **secreto profesional**, obligación que subsiste aun después de finalizar la relación con la institución.
 
@@ -34,5 +31,5 @@ Cada sesión debe documentar el progreso terapéutico con los siguientes datos m
 -   **Sugerencias y Plan:** Indicaciones psicoterapéuticas, metas de la sesión y plan de manejo.
 -   **Autoría:** Cada nota debe incluir fecha, hora y el nombre completo con la **firma (autógrafa o electrónica)** del psicólogo para asegurar la integridad y trazabilidad del registro.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU0NzM1MDgzMSwyODM5NzQ4OV19
+eyJoaXN0b3J5IjpbLTE1NDY5MDQwMDEsMjgzOTc0ODldfQ==
 -->
