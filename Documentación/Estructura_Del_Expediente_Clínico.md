@@ -3,15 +3,12 @@
  ***El expediente clínico deberá contener la siguiente información mínima para cada paciente:***
 
 1. ### Datos de Identificación (Contexto Psicosocial)
-
-	Además de los datos generales, en psicología cobran relevancia factores que influyen en el entorno del paciente:
-
 -   **Identidad y origen:** Nombre, sexo, edad y domicilio.
 -   **Entorno cultural:** Se debe incluir el **grupo étnico**, ya que permite identificar factores sociales y padecimientos que afectan con mayor frecuencia a ciertos grupos.
 -   **Sistema de creencias:** La **religión** se registra por su impacto en los valores y el marco de referencia del individuo.
 -   **Condiciones de vida:** Nivel socioeconómico, tipo de vivienda y si presenta alguna **discapacidad** (para evaluar barreras de acceso o necesidades especiales).
 
-2. Información Administrativa y de Privacidad
+2. ### Información Administrativa y de Privacidad
 
 Debido a la sensibilidad de la información tratada, esta sección es crítica:
 
@@ -37,5 +34,5 @@ Cada sesión debe documentar el progreso terapéutico con los siguientes datos m
 -   **Sugerencias y Plan:** Indicaciones psicoterapéuticas, metas de la sesión y plan de manejo.
 -   **Autoría:** Cada nota debe incluir fecha, hora y el nombre completo con la **firma (autógrafa o electrónica)** del psicólogo para asegurar la integridad y trazabilidad del registro.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTM0NjYzOTQzMCwyODM5NzQ4OV19
+eyJoaXN0b3J5IjpbMTU0NzM1MDgzMSwyODM5NzQ4OV19
 -->
