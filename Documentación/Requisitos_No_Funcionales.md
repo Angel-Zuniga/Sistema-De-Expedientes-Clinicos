@@ -1,4 +1,22 @@
-### RNF - 01 Seguridad del mecanismo de autenticación por código
+### RF - 01 Autenticación mediante código de un solo uso
+
+**Requisito:** Inicio de sesión mediante código OTP.
+
+**Descripción:**
+El sistema deberá permitir que terapeutas y administradores inicien sesión mediante un código de un solo uso enviado al correo electrónico registrado en el sistema.
+
+**Restricciones:**
+- Solo usuarios previamente registrados pueden solicitar un código de acceso.
+- El código debe enviarse al correo asociado al usuario.
+
+**Criterios de aceptación:**
+- El usuario puede solicitar un código de acceso desde la interfaz de inicio de sesión.
+- El sistema envía un código al correo electrónico registrado.
+- El usuario puede ingresar el código recibido para autenticarse en el sistema.
+
+---
+
+### RNF - 02 Seguridad del mecanismo de autenticación por código
 **Requisito:** Seguridad del mecanismo de autenticación mediante código OTP.
 
 **Descripción:**
@@ -17,7 +35,7 @@ El sistema deberá implementar el mecanismo de autenticación mediante código d
 
 ---
 
-### RNF - 02 Protección contra intentos de autenticación no autorizados
+### RNF - 03 Protección contra intentos de autenticación no autorizados
 **Requisito:** Limitación de intentos fallidos de autenticación.
 
 **Descripción:**
@@ -35,7 +53,7 @@ El sistema deberá implementar mecanismos de protección contra intentos repetid
 
 ---
 
-### RNF - 03 Conservación de expedientes clínicos
+### RNF - 04 Conservación de expedientes clínicos
 **Requisito:** Preservación en lugar de eliminación física de pacientes
 
 **Descripción:**
@@ -54,7 +72,7 @@ El sistema deberá diseñarse para que la "eliminación" de pacientes no impliqu
 
 ---
 
-### RNF - 04 Aplicación obligatoria de políticas de autorización
+### RNF - 05 Aplicación obligatoria de políticas de autorización
 
 **Requisito:** Aplicación de controles de autorización en el backend.
 
@@ -73,7 +91,7 @@ El sistema deberá implementar controles de autorización en el backend para gar
 - Las restricciones de acceso se aplican incluso si el usuario intenta acceder directamente a una ruta mediante URL.
 ---
 
-### RNF - 05 Aislamiento de datos clínicos por asignación
+### RNF - 06 Aislamiento de datos clínicos por asignación
 
 **Requisito:** Aislamiento de información clínica entre terapeutas.
 
@@ -92,7 +110,7 @@ El sistema deberá garantizar el aislamiento de los expedientes clínicos median
 
 ---
 
-### RNF - 06 Menú dinámico basado en el rol del usuario
+### RNF - 07 Menú dinámico basado en el rol del usuario
 
 **Requisito:** Menú dinámico basado en el rol del usuario
 
