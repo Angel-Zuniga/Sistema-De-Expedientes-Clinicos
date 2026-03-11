@@ -1,4 +1,22 @@
-### RF - 01 Consulta de pacientes
+### RF - 01 Autenticación mediante código de un solo uso
+
+**Requisito:** Inicio de sesión mediante código OTP.
+
+**Descripción:**
+El sistema deberá permitir que terapeutas y administradores inicien sesión mediante un código de un solo uso enviado al correo electrónico registrado en el sistema.
+
+**Restricciones:**
+- Solo usuarios previamente registrados pueden solicitar un código de acceso.
+- El código debe enviarse al correo asociado al usuario.
+
+**Criterios de aceptación:**
+- El usuario puede solicitar un código de acceso desde la interfaz de inicio de sesión.
+- El sistema envía un código al correo electrónico registrado.
+- El usuario puede ingresar el código recibido para autenticarse en el sistema.
+
+---
+
+  ### RF - 02 Consulta de pacientes
 
 **Requisito:** Consulta de pacientes registrados.
 
@@ -16,7 +34,7 @@ El sistema deberá permitir a los usuarios consultar los pacientes registrados e
 
 ---
 
-### RF - 02 Edición de expediente clínico
+### RF - 03 Edición de expediente clínico
 
 **Requisito:** Edición de expediente clínico.
 
@@ -35,7 +53,7 @@ El sistema deberá permitir actualizar la información clínica del expediente d
 
 ---
 
-### RF - 03 Registro de sesiones psicológicas
+### RF - 04 Registro de sesiones psicológicas
 
 **Requisito:** Registro de sesiones psicológicas.
 
@@ -51,7 +69,7 @@ El sistema deberá permitir registrar sesiones psicológicas asociadas a un paci
 
 ---
 
-### RF - 04 Visualización operativa de expedientes
+### RF - 05 Visualización operativa de expedientes
 
 **Requisito:** Visualización operativa para administradores.
 
@@ -69,7 +87,7 @@ El sistema deberá permitir que los administradores consulten información opera
 
 ---
 
-### RF - 05 Asignación de pacientes a terapeutas
+### RF - 06 Asignación de pacientes a terapeutas
 
 **Requisito:** Asignación de pacientes.
 
@@ -85,7 +103,7 @@ El sistema deberá permitir asignar pacientes a terapeutas responsables de su at
 
 ---
 
-### RF - 06 Navegación del sistema mediante menú
+### RF - 07 Navegación del sistema mediante menú
 
 **Requisito:** Navegación mediante menú del sistema.
 
