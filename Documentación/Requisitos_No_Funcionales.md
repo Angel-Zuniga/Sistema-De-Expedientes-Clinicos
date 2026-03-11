@@ -35,7 +35,7 @@ El sistema deberá diseñarse para que la "eliminación" de pacientes no impliqu
 
 ---
 
-### RNF - 05 Aplicación obligatoria de políticas de autorización
+### RNF - 03 Aplicación obligatoria de políticas de autorización
 
 **Requisito:** Aplicación de controles de autorización en el backend.
 
@@ -54,7 +54,7 @@ El sistema deberá implementar controles de autorización en el backend para gar
 - Las restricciones de acceso se aplican incluso si el usuario intenta acceder directamente a una ruta mediante URL.
 ---
 
-### RNF - 06 Aislamiento de datos clínicos por asignación
+### RNF - 04 Aislamiento de datos clínicos por asignación
 
 **Requisito:** Aislamiento de información clínica entre terapeutas.
 
@@ -73,7 +73,7 @@ El sistema deberá garantizar el aislamiento de los expedientes clínicos median
 
 ---
 
-### RNF - 07 Menú dinámico basado en el rol del usuario
+### RNF - 05 Menú dinámico basado en el rol del usuario
 
 **Requisito:** Menú dinámico basado en el rol del usuario
 
@@ -90,5 +90,5 @@ El sistema deberá diseñarse para que la interfaz muestre opciones de navegaci�
 - Administradores visualizan el panel/opciones de gestión correspondientes.
 - Si un usuario intenta ejecutar una acción no permitida fuera del menú, el backend la rechaza.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzEzNjc2NzE3XX0=
+eyJoaXN0b3J5IjpbLTQzNjk4MDVdfQ==
 -->
