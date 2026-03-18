@@ -74,3 +74,12 @@ Este trabajo permitirá establecer una base para el modelo estructural del siste
 
 **¿Se completó?:** En progreso
 
+### Ángel Zúñiga
+**Actividad:** definición y diagramas BPNM RNF-01 y 03
+
+Terminar el Diagrama BPMN del RFN01 Conservación de expedientes clínicos y justificación del enfoque seleccionado para el requisito no funcional RNF-01 esto conlleva a definir donde sale la secuencia de pasos y tener información suficiente. Al igual apoyara en la creación inicial del diagrama del RNF03. 
+Este trabajo permitirá establecer una base visual y grafica para los requisitos no funcionales del sistema esta semana.
+
+**Estado de la tarea:** En progreso 
+ 
+
