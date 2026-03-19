@@ -1,0 +1,214 @@
+# Casos de uso
+## Actor: Terapeuta
+
+### CU-01: Visualizar pacientes asignados
+
+#### Descripción:
+El terapeuta consulta la lista de pacientes que tiene asignados.
+
+### Flujo principal:
+1. El terapeuta accede al moódulo de pacientes
+2. El sistema hará las validaciones de acuerdo
+a los mecanismos implementandos con enfoque ABAC.
+3. El sistiema filtra pacientes por asignación.
+4. El sistema muestra:
+    - Nombre del paciente
+    - Número de expediente
+### Postcondiciones:
+- Solo se muestran pacientes asignados al terapeuta.
+
+### RF relacionados: 
+- RF-01
+---
+### CU-02: Acceder a expediente clínico
+
+### Descripción:
+El terapeuta consulta el expediente de un paciente asignado.
+
+
+
+### Flujo principal:
+1. El terapeuta selecciona un paciente
+2. El sistema valida:
+    - Rol = Terapeuta
+    - Relación terapeuta-expediente
+3. El sistema autoriza acceso
+4. El sistema muestra el expediente y sus apartados.
+
+### Flujo alterno 
+- Paciente no asignado -> acceso denegado
+
+### Postcondiciones:
+- Acceso permitido solo si está autorizado
+
+### RF relacionados: 
+- RF-02 
+--- 
+
+### CU-03: Registrar reporte de sesión
+
+### Descripción: 
+El terapeuta registra un reporte en un expediente autorizado.
+
+
+
+### Flujo principal:
+1. El terapeuta accede al expediente
+2. El sistema valida autorización sobre el paciente
+3. El terapeuta accede al control de sesiones
+4. El terapeuta ingresa datos en el reporte de sesión:
+    - Fecha
+    - Duración
+    - Observaciones
+5. El sistema almacena el reporte
+
+### Flujo alterno:
+- Intento de registrar reporte vacío -> registro denegado. 
+
+### Postcondiciones:
+- Reporte se registra correctamente
+
+### RF relacionados:
+- RF-03
+---
+
+### CU-04: Enviar reporte a revisión
+
+### Descripción:
+El terapeuta envía un reporte al supervisor.
+
+
+### Flujo principal:
+1. El terapeuta selecciona un reporte
+2. El sistema valida:
+    - Propiedad del reporte
+3. El terapeuta envía el reporte a revisión 
+4. El sistema envía el reporte al supervisor
+5. El sistema cambia el estado del reporte a "pendiente de revisión" 
+
+### Flujo alterno:
+- Reporte no pertenece al terapeuta -> envio denegado 
+
+### Postcondiciones: 
+- Reporte se envía al supervisor y queda en estado "pendiente de revisión
+
+### RF relacionados:
+- RF-04 
+---
+
+### CU-05: Modificar reporte rechazado
+
+### Descripción:
+El terapeuta edita un reporte rechazado.
+
+### Flujo principal:
+1. El terapeuta accede a sus reportes
+2. El sistema filtra reportes por:
+    - Estado = rechazado
+    - Propiertario = terapeuta
+3. El terapeuta selecciona el reporte 
+4. El terapeuta modifica el reporte
+5. El terapeuta guarda los cambios del reporte
+6. El terapeuta reenvía el reporte a revisión
+7. El sistema envía el reporte al supervisor
+8. El sistema cambia el estado del reporte a "pendiente de revisión" 
+
+### Postcondiciones:
+- Reporte se envía al supervisor y queda en estado "pendiente de revisión
+
+### RF relacionados:
+- RF-05
+
+## Actor: Supervisor 
+
+Restricción: El sistema solo debe permitir acceso únicamente a reportes de terapeutas bajo su supervisión.
+
+### CU-06: Visualizar reportes pendientes de revisión
+
+### Descripción:
+El supervisor consulta la lista de reportes en estado pendiente enviados por terapeutas a su cargo.
+
+### Flujo principal:
+1. El supervisor accede al módulo de revisión
+2. El sistema valida rol = Supervisor
+3. El sistema filtra reportes por:
+    - Estado = pendiente de revisión
+    - Terapeutas bajo supervisión
+
+4. El sistema muestra:
+    - Identificador del reporte
+    - Nombre del terapeuta
+    - Fecha de la sesión
+
+### Postcondiciones: 
+- Solo se muestran reportes autorizados
+### RF relacionados:
+- RF-06
+---
+
+### CU-07: Visualizar contenido de reporte
+
+### Descripción:
+El supervisor consulta el detalle de un reporte de sesión.
+
+### Flujo principal: 
+1. El supervisor selecciona un reporte
+
+2. El sistema valida:
+    - Rol = Supervisor
+    - Relación supervisor–terapeuta
+    - Estado del reporte válido
+3. El sistema muestra:
+    - Terapeuta
+    - Paciente
+    - Fecha
+    - Duración
+    - Observaciones
+
+### Postcondiciones
+- La información del reporte es mostrada correctamente
+
+### RF relacionados:
+- RF-07
+--- 
+
+### CU-08: Aprobar reporte de sesión
+
+### Descripción: 
+El supervisor aprueba un reporte revisado.
+
+### Flujo principal:
+1. El supervisor accede a un reporte pendiente
+2. El sistema valida:
+    - Estado = pendiente
+    - Autorización sobre el reporte
+3. El supervisor selecciona “Aprobar”
+4. El sistema actualiza estado a “aprobado”
+5. El sistema registra la acción
+
+### Postcondiciones:
+- El reporte se registra como aprobado
+
+### RF relacionados: 
+- RF-08
+---
+### CU-09: Rechazar reporte de sesión
+
+### Descripción:
+El supervisor rechaza un reporte y registra comentarios.
+
+### Flujo principal:
+1. El supervisor accede a un reporte pendiente
+2. El sistema valida autorización
+3. El supervisor selecciona “Rechazar”
+4. Ingresa comentarios
+5. El sistema:
+    - Guarda comentarios
+    - Cambia estado a “rechazado”
+    - Notifica al terapeuta
+
+### Postcondiciones:
+- El reporte es rechazado y enviado de nuevo al terapeuta
+
+### RF relacionados:
+- RF-08
