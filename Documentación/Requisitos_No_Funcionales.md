@@ -149,7 +149,7 @@ El sistema deberá garantizar la integridad y consistencia de los datos almacena
 **Restricciones:**
 - Toda información ingresada en el expediente clínico debe validarse antes de ser almacenada en la base de datos.
 - Los campos obligatorios (nombre completo, edad, fecha de nacimiento, correo electrónico y número telefónico) deben contener valores válidos y no nulos. La fecha de nacimiento debe ser anterior a la fecha actual y consistente con la edad registrada. El número telefónico debe cumplir con el formato permitido, aceptando únicamente dígitos y caracteres de separación válidos (guiones y espacios).
-- Los datos de la entrevista socioeconómica (ingreso familiar, alimentación, vivienda) deben ser valores numéricos positivos.
+- Los datos de la entrevista socioeconómica (ingreso familiar, alimentación) deben ser valores numéricos positivos (en caso de vivvienda como tipo texto).
 - La información archivada no podrá ser modificada; solo se permite su visualización.
 - Las modificaciones de datos que hayan sido aprobados por un terapeuta supervisor requerirán re-aprobación del administrador.
 
