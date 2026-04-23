@@ -12,6 +12,12 @@ Cada elemento de la lista mostrará:
 **Precondiciones:**
 - El paciente está registrado en el sistema
 - El terapeuta está registrado en el sistema
+- Existen uno o más registros en **AsignacionTerapeutaPaciente** con estado = "activa" para el terapeuta
+
+
+**Criterios de aceptación:**
+- El sistema muestra la lista de pacientes con registros activos en **AsignacionTerapeutaPaciente** asociados al terapeuta.
+- **NUEVO:** Solo se muestran pacientes con estado = "activa" en la asignación
 
 **Criterios de aceptación:**
 - El sistema muestra la lista de pacientes asignados al terapeuta.
