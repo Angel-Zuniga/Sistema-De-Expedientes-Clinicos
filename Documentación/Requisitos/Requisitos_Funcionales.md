@@ -17,10 +17,7 @@ Cada elemento de la lista mostrará:
 
 **Criterios de aceptación:**
 - El sistema muestra la lista de pacientes con registros activos en **AsignacionTerapeutaPaciente** asociados al terapeuta.
-- **NUEVO:** Solo se muestran pacientes con estado = "activa" en la asignación
-
-**Criterios de aceptación:**
-- El sistema muestra la lista de pacientes asignados al terapeuta.
+- Solo se muestran pacientes con estado = "activa" en la asignación
 
 ### RF-02 Acceso al expediente clínico de paciente asignado
 
