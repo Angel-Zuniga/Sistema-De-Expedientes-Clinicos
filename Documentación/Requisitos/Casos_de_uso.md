@@ -8,8 +8,7 @@ El terapeuta consulta la lista de pacientes que tiene asignados.
 
 ### Flujo principal:
 1. El terapeuta accede al moódulo de pacientes
-2. El sistema hará las validaciones de acuerdo
-a los mecanismos implementandos con enfoque ABAC.
+2. El sistema valida que el usuario autenticado tenga rol Terapeuta y que exista asignación registrada entre el terapeuta y los pacientes.
 3. El sistiema filtra pacientes por asignación.
 4. El sistema muestra:
     - Nombre del paciente
@@ -254,6 +253,40 @@ Permite al administrador registrar la información correspondiente a la entrevis
 ### RF relacionados:
 - RF-10
 ---
+### CU-13: Consultar registros de auditoría
+
+### Descripción:
+El Administrador consulta el historial de eventos registrados por el sistema de auditoría.
+
+### Flujo principal:
+1. El Administrador accede al módulo de auditoría.
+2. El sistema valida rol = Administrador.
+3. El Administrador aplica de forma opcional filtros de búsqueda:
+    - Identificador de usuario
+    - Rango de fechas
+    - Tipo de acción
+    - Recurso e identificador de recurso
+    - Resultado (`PERMITIDO` / `DENEGADO`)
+4. El sistema retorna la lista de registros que cumplen los criterios.
+5. El sistema muestra por cada registro:
+    - Identificador del log
+    - Usuario y rol
+    - Acción realizada
+    - Recurso e identificador del recurso
+    - Fecha y hora
+    - Resultado
+
+### Flujo alterno:
+- Usuario con rol Terapeuta o Supervisor intenta acceder al módulo → acceso denegado.
+
+### Postcondiciones:
+- Los registros mostrados son de solo lectura; no es posible modificarlos ni eliminarlos desde la interfaz.
+
+### RF relacionados:
+- RF-12
+
+---
+
 ### CU-12: Registrar consentimiento informado
 
 ### Descripción:

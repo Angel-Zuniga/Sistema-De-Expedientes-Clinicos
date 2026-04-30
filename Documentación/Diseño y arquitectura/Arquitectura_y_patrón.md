@@ -16,11 +16,13 @@ Por otro lado, consideramos que arquitecturas mas complejas como microservicios 
 
 La arquitectura estará implementada en tres capas principales:
 - Capa de presentación (Controller): Esta capa se encargará de gestionar las solicitudes del usuario, recibir entradas y devolver respuestas. La capa no contendrá logica de negocio, si no que delegara dichas operaciones a la capa de servicios. 
-- Capa de lógica de negocio (Service): Esta capa concentrará las reglas de lsistema, como las validaciones, el control de acceso basado en atributos (ABAC), restricciones sobre el estado del expediente, etc. 
-- Capa de acceso a datos (Repository): Esta capa abstraerá la interacción con la base de datos, pues proporcionará métodos para consultar, almacenar y actualizar la información sin expones detalles al resto del sistema.
+- Capa de lógica de negocio (Service): Esta capa concentrará las reglas del sistema, como las validaciones, el control de acceso basado en atributos (ABAC), restricciones sobre el estado del expediente, etc. También es responsable de generar los registros de auditoría tras evaluar cada operación sensible, conforme a lo definido en `Auditoria.md`.
+- Capa de acceso a datos (Repository): Esta capa abstraerá la interacción con la base de datos, pues proporcionará métodos para consultar, almacenar y actualizar la información sin exponer detalles al resto del sistema. Incluye tanto los repositorios de datos de negocio como el repositorio de auditoría.
 
 El flujo de operación del sistema está representando en el siguiente esquema:
 ```
 Controller → Service → Repository → Base de datos
+                 ↓
+             Auditoría
 ```
-En este flujo, cada solicitud pasará por la capa de servicios, donde se aplicaran las reglas de negocio y validaciones necesarias antes de poder interactuar con la base de datos, garantizando consistencia, seguridad y trazabilidad por cada operación realizada.
+En este flujo, cada solicitud es delegada por el Controller al Service, donde se evalúan las reglas de autorización ABAC y las reglas de negocio antes de interactuar con la base de datos. El Service también genera el registro de auditoría correspondiente (con resultado `PERMITIDO` o `DENEGADO`) que se persiste a través del Repository de auditoría, garantizando consistencia, seguridad y trazabilidad en cada operación.
