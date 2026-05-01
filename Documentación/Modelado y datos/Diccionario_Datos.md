@@ -3,90 +3,104 @@
 ### Usuario
 | Nombre        | Tipo de dato  | Descripción   | Restricciones |
 | ------------- |:-------------:| ------------- |:-------------:|
-| idUsuario     | Long          | Número único para identificar al individuo| Único. 19 dígitos máximos.        |
-| nombreCompleto| String        | Primer nombre, segundo nombre (si tiene), apellido paterno y apellido materno del usuario    | Solo letras, un máximo de 100 letras y Debe existir    |
+| idUsuario     | Long          | Número único para identificar al individuo | Único. 19 dígitos máximos y Debe existir |
+| nombreCompleto| String        | Primer nombre, segundo nombre (si tiene), apellido paterno y apellido materno del usuario | Solo letras, máximo 100 caracteres y Debe existir |
 
 ### Paciente
 Hereda de: Usuario
-| Nombre        | Tipo de dato  | Descripción   | Restricciones |
-| ------------- |:-------------:| ------------- |:-------------:|
-| edad       | Int    | Edad del paciente en el momento | edad no menor a 1 ni mayor a 120 y Debe existir  |
-| fechaNacimiento       | Date     | Fecha de nacimiento del paciente| fecha no menor a 1910 ni mayor a la fecha actual |
-| correoElectronico     | String     | Correo electrónico del paciente o tutor | Único. Máximo de 100 carácteres y Formato correo válido (usuario@dominio.com) |
-| numeroTelefonico      | String     | Número telefónico del paciente o tutor  |Único. Solo dígitos, 20 máximos y Debe existir|
+| Nombre              | Tipo de dato  | Descripción   | Restricciones |
+| ------------------- |:-------------:| ------------- |:-------------:|
+| edad                | int           | Edad del paciente en el momento | Edad no menor a 1 ni mayor a 120 y Debe existir |
+| fechaNacimiento     | Date          | Fecha de nacimiento del paciente | Fecha no menor a 1910 ni mayor a la fecha actual |
+| correoElectronico   | String        | Correo electrónico del paciente o tutor | Único. Máximo 100 caracteres y formato correo válido (usuario@dominio.com) |
+| numeroTelefonico    | String        | Número telefónico del paciente o tutor | Único. Solo dígitos, 20 máximos y Debe existir |
 
 ### Terapeuta
 Hereda de: Usuario
-* Sin atributos propios adicionales
-* Hereda de: Usuario
-* Atributos heredados: 
-    + id
-    + nombreCompleto
 
-**Nota:**  La asignación de pacientes se gestiona mediante la entidad **AsignacionTerapeutaPaciente**.
+Relación N:M con Paciente mediante tabla de asociación `terapeuta_paciente`
 
-### AsignacionTerapeutaPaciente
-Entidad pivote para la relación N:M entre Terapeuta y Paciente
+*Sin atributos propios adicionales*
 
-| Nombre        | Tipo de dato  | Descripción   | Restricciones |
-| ------------- |:-------------:| ------------- |:-------------:|
-| idAsignacion | Long | Identificador único de la asignación | Único. 19 dígitos máximos y Debe existir |
-| idTerapeuta | Long | Identificador del terapeuta | Referencia a Terapeuta. 19 dígitos máximos y Debe existir |
-| idPaciente | Long | Identificador del paciente | Referencia a Paciente. 19 dígitos máximos y Debe existir |
-| fechaAsignacion | DateTime | Fecha y hora de la asignación | Debe existir. Fecha no mayor a la fecha actual |
-| estado | String | Estado de la asignación | Debe existir. Valores: activa, inactiva |
-| observaciones | String | Notas sobre la asignación | Máximo 500 carácteres. Opcional |
-| fechaFinalizacion | DateTime | Fecha de finalización de la asignación | Opcional. Debe ser >= fechaAsignacion |
+### terapeuta_paciente
+Tabla de asociación entre Terapeuta y Paciente
 
+| Nombre      | Tipo de dato  | Descripción                    | Restricciones                      |
+| ----------- |:-------------:| ------------------------------ |:----------------------------------:|
+| idTerapeuta | Long          | Referencia al terapeuta        | FK hacia Terapeuta. NOT NULL       |
+| idPaciente  | Long          | Referencia al paciente         | FK hacia Paciente. NOT NULL        |
 
+*Clave primaria compuesta: (idTerapeuta, idPaciente)*
 
 ### Supervisor
-* Sin atributos propios
-* Hereda de: Usuario
+Hereda de: Usuario
+
+Relación N:M con Terapeuta mediante tabla de asociación `supervisor_terapeuta`
+
+*Sin atributos propios adicionales*
+
+### supervisor_terapeuta
+Tabla de asociación entre Supervisor y Terapeuta
+
+| Nombre       | Tipo de dato  | Descripción                    | Restricciones                      |
+| ------------ |:-------------:| ------------------------------ |:----------------------------------:|
+| idSupervisor | Long          | Referencia al supervisor       | FK hacia Supervisor. NOT NULL      |
+| idTerapeuta  | Long          | Referencia al terapeuta        | FK hacia Terapeuta. NOT NULL       |
+
+*Clave primaria compuesta: (idSupervisor, idTerapeuta)*
 
 ### Administrador
-* Sin atributos propios
-* Hereda de: Usuario
+Hereda de: Usuario
+
+*Sin atributos propios adicionales*
 
 ### Documento
-| Nombre        | Tipo de dato  | Descripción   | Restricciones |
-| ------------- |:-------------:| ------------- |:-------------:|
-| idDocumento   | Long          | Número único de identificación por documento| Único y 19 dígitos máximos |
-| fecha         | Date          | Fecha para identificar última modificación  | Fecha no mayor a la fecha actual, tampoco menor a la fecha de creación del documento y Debe existir|
+| Nombre      | Tipo de dato  | Descripción   | Restricciones |
+| ----------- |:-------------:| ------------- |:-------------:|
+| idDocumento | Long          | Número único de identificación por documento | Único. 19 dígitos máximos y Debe existir |
+| fecha       | Date          | Fecha de última modificación | Fecha no mayor a la fecha actual y Debe existir |
 
 ### Expediente
-Hereda de: Documento
-
+Entidad independiente. Se asocia con Paciente (1:1) y con Terapeuta (N:1).
 
 | Nombre        | Tipo de dato  | Descripción   | Restricciones |
 | ------------- |:-------------:| ------------- |:-------------:|
-| terapeutaAsociado     | String     | Nombre del terapeuta encargado del paciente | No mayor a 100 carácteres y Debe existir |
-| fechaProxCita      | DateTime     | Fecha de la próxima cita entre paciente y terapeuta | Fecha no menor a la fecha actual |
-| idPaciente | Long | Número único para identificar al paciente del expediente | Debe existir |
+| idExpediente  | Long          | Número único de identificación del expediente | Único. 19 dígitos máximos y Debe existir |
+| idPaciente    | Long          | Referencia al paciente al que pertenece el expediente | FK hacia Paciente. Único. NOT NULL |
+| idTerapeuta   | Long          | Referencia al terapeuta asignado al expediente | FK hacia Terapeuta. NOT NULL |
+| estado        | ENUM          | Estado actual del expediente | Valores: `ACTIVO`, `ARCHIVADO`. Valor por defecto: `ACTIVO`. NOT NULL |
+| fechaProxCita | DateTime      | Fecha de la próxima cita entre paciente y terapeuta | Fecha no menor a la fecha actual |
 
 ### ReporteSesion
 Hereda de: Documento
-| Nombre        | Tipo de dato  | Descripción   | Restricciones |
-| ------------- |:-------------:| ------------- |:-------------:|
-| duracionSesion      | Int | Tiempo total que duró la sesión en minutos | Tiempo mayor a cero |
-| observacionesClinicas      | String | Notas clínicas correspondientes al paciente por parte del profesional encargado | Debe existir |
-| estado      | String | Estado psico-emocional actual del paciente | Debe existir |
-| comentarios      | String | Notas del profesional encargado que notó durante la sesión sobre el paciente  y considero relevante | Debe existir |
-| idTerapeuta      | Long | Número de identificación del terapeuta encargado | Consta de 19 dígitos máximos y Debe existir |
+
+| Nombre                | Tipo de dato  | Descripción   | Restricciones |
+| --------------------- |:-------------:| ------------- |:-------------:|
+| idTerapeuta           | Long          | Referencia al terapeuta que elaboró el reporte | FK hacia Terapeuta. NOT NULL |
+| fechaSesion           | Date          | Fecha en que se realizó la sesión clínica | NOT NULL |
+| duracionSesion        | Int           | Tiempo total que duró la sesión en minutos | Mayor a cero |
+| observacionesClinicas | String        | Notas clínicas del terapeuta correspondientes a la sesión | NOT NULL |
+| estado                | ENUM          | Estado del reporte en su ciclo de vida | Valores: `CREADO`, `PENDIENTE`, `APROBADO`, `RECHAZADO`. NOT NULL |
+| comentariosTerapeuta  | String        | Notas adicionales del terapeuta sobre la sesión | Opcional |
+| comentariosSupervisor | String        | Comentarios del supervisor al rechazar el reporte | Opcional |
+| fechaCreacion         | DateTime      | Fecha y hora de creación del reporte | NOT NULL |
+| fechaModificacion     | DateTime      | Fecha y hora de última modificación del reporte | NOT NULL |
 
 ### InformeConsentimiento
 Hereda de: Documento
-| Nombre        | Tipo de dato  | Descripción   | Restricciones |
-| ------------- |:-------------:| ------------- |:-------------:|
-| cuerpoDelTexto | String | Texto legal completo que le indica al paciente los acuerdos que deberpa aceptar para recibir tratamiento | Debe existir |
-| acuerdoConfidencial | String | Texto que contiene el deber ético y la obligación legal que tiene todo el personal involucrado de proteger la información privada del paciente | Debe existir |
 
-### EntrevistaSocioEconomica
+| Nombre              | Tipo de dato  | Descripción   | Restricciones |
+| ------------------- |:-------------:| ------------- |:-------------:|
+| cuerpoDelTexto      | String        | Texto legal completo que indica al paciente los acuerdos que deberá aceptar para recibir tratamiento | NOT NULL |
+| acuerdoConfidencial | String        | Texto que contiene el deber ético y la obligación legal del personal de proteger la información privada del paciente | NOT NULL |
+
+### EntrevistaSocioeconomica
 Hereda de: Documento
-| Nombre        | Tipo de dato  | Descripción   | Restricciones |
-| ------------- |:-------------:| ------------- |:-------------:|
-| ingresoFamiliar | Decimal | Que refiere a la suma de ingresos de cada integrante de la familia de acuerdo a cuantos son | Valor no menor a 0 y Debe existir |
-| alimentacion | Decimal | Parte del ingreso familiar destinado a la comida y es tomado como un egreso económico | Valor no menor a 0 y Debe existir |
-| lugarProcedencia | String | Indica el área geográfica de residencia del paciente; considerado como egreso | Máximo 100 carácteres y Debe existir |
-| vivienda | String | Lugar físico donde habita el paciente y su familia, se tomas en cuenta las características físicas | Máximo 1000 carácteres |
-| estadoSaludFamiliar | Int | Número de enfermos crónicos en la familia al momento de la evaluación | Valor no mayor a 50 y Debe existir |
+
+| Nombre              | Tipo de dato  | Descripción   | Restricciones |
+| ------------------- |:-------------:| ------------- |:-------------:|
+| ingresoFamiliar     | Decimal       | Suma de ingresos de cada integrante de la familia | Valor no menor a 0 y Debe existir |
+| gastoAlimentacion   | Decimal       | Parte del ingreso familiar destinado a la comida | Valor no menor a 0 y Debe existir |
+| lugarProcedencia    | String        | Área geográfica de residencia del paciente | Máximo 100 caracteres y Debe existir |
+| vivienda            | String        | Lugar físico donde habita el paciente y su familia, incluyendo características físicas | Máximo 1000 caracteres |
+| estadoSaludFamiliar | String        | Número de enfermos crónicos en la familia al momento de la evaluación | Valor no mayor a 50 y Debe existir |
