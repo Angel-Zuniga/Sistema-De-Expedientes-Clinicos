@@ -75,4 +75,4 @@ Contiene **ReporteSesion**, **InformeConsentimiento** y **EntrevistaSocioEconomi
 
 ## Diagrama de relación de clases
 
-![Diagrama](/Documentación/Diagramas/DCDS.png)
+![Diagrama](/Documentación/Diagramas/DCDS.jpg)
